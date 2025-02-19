@@ -1,0 +1,51 @@
+model Station {
+  id                  String   @id @default(uuid())
+  name                String
+  code                String?
+  extStationId        String?  @map("ext_station_id")
+  extStationCode      String?  @map("ext_station_code")
+  stationCatalogId    String?  @map("station_catalog_id")
+  stationMetaCode     String?  @map("station_meta_code")
+  address             String?
+  basinName           String?  @map("basin_name")
+  subBasinName        String?  @map("sub_basin_name")
+  river               String?
+  amphurName          String?  @map("amphur_name")
+  tambonName          String?  @map("tambon_name")
+  provinceName        String?  @map("province_name")
+  phone               String?
+  latitude            Float?
+  longitude           Float?
+  pictures            String[] @default([])
+  bankFrHeight        Float?   @map("bank_fr_height")
+  bankFlHeight        Float?   @map("bank_fl_height")
+  bankBrHeight        Float?   @map("bank_br_height")
+  bankBlHeight        Float?   @map("bank_bl_height")
+  bankRHeight         Float?   @map("bank_r_height")
+  bankLHeight         Float?   @map("bank_l_height")
+  thresholds          Json[]   @default([])
+  floatingSwitchLevel Float?   @map("floating_switch_level")
+  status              Status   @default(ACTIVE)
+  layoutPicture       String?  @map("layout_picture")
+  tags                String[] @default([])
+  info                Json[]   @default([])
+  ownerName           String?  @map("owner_name")
+  projectName         String?  @map("project_name")
+  sourceGroup         String?  @map("source_group")
+  aliasCode           String?  @map("alias_code")
+  stationCatalog      StationCatalog? @relation(fields: [stationCatalogId], references: [id])
+  stationUsers        StationUser[]
+  stationMeta         StationMeta?    @relation(fields: [stationMetaCode], references: [code])
+  
+  @@map("stations")
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+  DELETED
+}
+
+
+
+
