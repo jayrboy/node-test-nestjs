@@ -1,0 +1,46 @@
+-- CreateEnum
+CREATE TYPE "Status" AS ENUM ('ACTIVE', 'INACTIVE', 'DELETED');
+
+-- CreateTable
+CREATE TABLE "stations" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "code" TEXT,
+    "station_catalog_id" TEXT,
+    "address" TEXT,
+    "phone" TEXT,
+    "latitude" DOUBLE PRECISION,
+    "longitude" DOUBLE PRECISION,
+    "pictures" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "bank_fr_height" DOUBLE PRECISION,
+    "bank_fl_height" DOUBLE PRECISION,
+    "bank_br_height" DOUBLE PRECISION,
+    "bank_bl_height" DOUBLE PRECISION,
+    "bank_r_height" DOUBLE PRECISION,
+    "bank_l_height" DOUBLE PRECISION,
+    "thresholds" JSONB[] DEFAULT ARRAY[]::JSONB[],
+    "floating_switch_level" DOUBLE PRECISION,
+    "status" "Status" NOT NULL DEFAULT 'ACTIVE',
+    "layout_picture" TEXT,
+    "tags" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "info" JSONB[] DEFAULT ARRAY[]::JSONB[],
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_by" TEXT,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_by" TEXT,
+    "ext_station_id" TEXT,
+    "ext_station_code" TEXT,
+    "basin_name" TEXT,
+    "sub_basin_name" TEXT,
+    "river" TEXT,
+    "amphur_name" TEXT,
+    "tambon_name" TEXT,
+    "province_name" TEXT,
+    "source_group" TEXT,
+    "station_meta_code" TEXT,
+    "owner_name" TEXT,
+    "project_name" TEXT,
+    "alias_code" TEXT,
+
+    CONSTRAINT "stations_pkey" PRIMARY KEY ("id")
+);

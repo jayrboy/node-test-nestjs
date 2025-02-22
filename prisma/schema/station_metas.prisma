@@ -1,8 +1,0 @@
-model StationMeta {
-  code      String  @id
-  name      String?
-  shortName String? @map("short_name")
-  stations  Station[]
-  
-  @@map("station_metas")
-}
