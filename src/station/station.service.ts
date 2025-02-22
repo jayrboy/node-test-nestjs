@@ -9,7 +9,6 @@ export class StationService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async create(createStationDto: CreateStationDto): Promise<Station> {
-    console.log(createStationDto);
     return await this.prismaService.station.create({
       data: {
         name: createStationDto.name,
@@ -30,7 +29,7 @@ export class StationService {
         floatingSwitchLevel: createStationDto.floatingSwitchLevel,
         status: createStationDto.status || 'ACTIVE',
         layoutPicture: createStationDto.layoutPicture,
-        tags: createStationDto.tags,
+        tags: createStationDto.tags || [],
         info: createStationDto.info || [],
         createdBy: createStationDto.createdBy || 'SYSTEM',
         updatedBy: createStationDto.updatedBy || 'SYSTEM',
@@ -51,12 +50,32 @@ export class StationService {
     });
   }
 
-  findAll() {
-    return `This action returns all station`;
+  async findAll(): Promise<Station[]> {
+    const stations = await this.prismaService.station.findMany();
+    return stations;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} station`;
+  // async findAll(params: {
+  //   skip?: number;
+  //   take?: number;
+  //   cursor?: Prisma.StationWhereUniqueInput;
+  //   where?: Prisma.StationWhereInput;
+  //   orderBy?: Prisma.StationOrderByWithRelationInput;
+  // }): Promise<Station[]> {
+  //   const { skip, take, cursor, where, orderBy } = params;
+  //   return this.prismaService.station.findMany({
+  //     skip,
+  //     take,
+  //     cursor,
+  //     where,
+  //     orderBy,
+  //   });
+  // }
+
+  async findOne(id: string): Promise<Station | null> {
+    return await this.prismaService.station.findUnique({
+      where: { id },
+    });
   }
 
   update(id: number, updateStationDto: UpdateStationDto) {

@@ -30,9 +30,19 @@ export class StationController {
     return this.stationService.findAll();
   }
 
+  // @Get()
+  // findAll() {
+  //   return this.stationService.findAll({
+  //     skip: 0,
+  //     take: 700, // Adjust as needed
+  //     where: {}, // Optional filtering
+  //     orderBy: { id: 'asc' }, // Optional sorting
+  //   });
+  // }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.stationService.findOne(+id);
+    return this.stationService.findOne(id);
   }
 
   @Put(':id')
