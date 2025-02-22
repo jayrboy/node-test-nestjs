@@ -56,3 +56,9 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
   }
 }
 ```
+
+## Swagger
+
+```sh
+npm install --save @nestjs/swagger
+```
