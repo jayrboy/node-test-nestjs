@@ -83,7 +83,9 @@ export class StationService {
     return `This action updates ${data} a #${id} station`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} station`;
+  async remove(id: string): Promise<Station | null> {
+    return await this.prismaService.station.delete({
+      where: { id },
+    });
   }
 }

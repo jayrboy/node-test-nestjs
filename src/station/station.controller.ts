@@ -21,6 +21,7 @@ export class StationController {
   @ApiOperation({ summary: 'Create a new station' })
   @ApiResponse({ status: 201, description: 'Station created successfully' })
   @ApiResponse({ status: 400, description: 'Bad request' })
+  @ApiResponse({ status: 500, description: 'Internal server error' })
   create(@Body() createStationDto: CreateStationDto) {
     return this.stationService.create(createStationDto);
   }
@@ -52,6 +53,6 @@ export class StationController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.stationService.remove(+id);
+    return this.stationService.remove(id);
   }
 }
