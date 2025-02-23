@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { PrismaService } from './prisma.service';
 import { StationModule } from './station/station.module';
 
@@ -10,6 +12,12 @@ import { StationModule } from './station/station.module';
       envFilePath: '.env',
     }),
     StationModule,
+    // GraphQLModule.forRoot<ApolloDriverConfig>({
+    //   driver: ApolloDriver,
+    //   typePaths: ['./**/*.graphql'],
+    //   context: ({ req }) => ({ headers: req.headers }),
+    //   debug: true,
+    // }),
   ],
   controllers: [],
   providers: [PrismaService],
