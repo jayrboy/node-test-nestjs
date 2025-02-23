@@ -48,7 +48,7 @@ export class StationController {
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateStationDto: UpdateStationDto) {
-    return this.stationService.update(+id, updateStationDto);
+    return this.stationService.update(id, updateStationDto);
   }
 
   @Delete(':id')

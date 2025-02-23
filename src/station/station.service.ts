@@ -78,9 +78,11 @@ export class StationService {
     });
   }
 
-  update(id: number, updateStationDto: UpdateStationDto) {
-    const data = updateStationDto;
-    return `This action updates ${data} a #${id} station`;
+  async update(id: string, updateStationDto: UpdateStationDto) {
+    return await this.prismaService.station.update({
+      where: { id },
+      data: updateStationDto,
+    });
   }
 
   async remove(id: string): Promise<Station | null> {
